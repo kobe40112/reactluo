@@ -1,0 +1,30 @@
+import React from 'react'
+
+import HelloWorldFunc from './components/HelloWorldFunc'
+import HelloWorldClass from './components/HelloWorldClass'
+
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      textNow: '',
+    }
+  }
+
+  // 為了要綁定this值，用類似箭頭函式的寫法
+  // 專門設計給子女元件，送資料到父母元件
+  sendDataToMe = (value) => {
+    this.setState({ textNow: value })
+  }
+
+  render() {
+    return (
+      <>
+        <HelloWorldClass sendMe={this.sendDataToMe} />
+        <HelloWorldFunc sendMe={this.sendDataToMe} />
+      </>
+    )
+  }
+}
+
+export default App
